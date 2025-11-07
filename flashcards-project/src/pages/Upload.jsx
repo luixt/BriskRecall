@@ -1,12 +1,13 @@
-import React from 'react'
-import UploadForm from '../components/UploadForm'
+import React from "react";
+import UploadForm from "../components/UploadForm";
 
+const UploadPage = () => {
+  return (
+    <div className="upload-page">
+      <h1>Upload a PDF to Generate Flashcards</h1>
+      <UploadForm />
+    </div>
+  );
+};
 
-export default function Upload(){
-    return (
-        <div>
-        <h2>Upload PDF and generate deck</h2>
-        <UploadForm />
-        </div>
-    )
-}
+export default UploadPage;

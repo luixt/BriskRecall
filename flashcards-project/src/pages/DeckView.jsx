@@ -1,42 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { supabase } from '../supabaseClient'
+import React, { useState, useEffect } from 'react';
+import Card from '../components/Card';
+import { supabase } from '../supabaseClient';
 
+const DeckView = ({ deckId }) => {
+  const [cards, setCards] = useState([]);
+  const [shuffled, setShuffled] = useState([]);
 
-export default function DeckView(){
-    const { id } = useParams()
-    const [cards, setCards] = useState([])
-    const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const fetchCards = async () => {
+      const { data, error } = await supabase.from('flashcards').select('*').eq('deck_id', deckId);
+      if (!error && data) {
+        setCards(data);
+        setShuffled([...data].sort(() => Math.random() - 0.5));
+      }
+    };
+    fetchCards();
+  }, [deckId]);
 
+  return (
+    <div className="deck-view">
+      <h1>Flashcards</h1>
+      <button onClick={() => setShuffled([...cards].sort(() => Math.random() - 0.5))}>Shuffle</button>
+      <div className="cards-grid">
+        {shuffled.map((card, i) => (
+          <Card key={i} question={card.question} answer={card.answer} color={'#FFD700'} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-    useEffect(()=>{
-        let mounted = true
-        async function fetchCards(){
-            const { data, error } = await supabase.from('flashcards').select('*').eq('deck_id', id)
-            if(error) return alert(error.message)
-            if(mounted) setCards(data)
-            setLoading(false)
-        }
-        fetchCards()
-        return ()=> mounted = false
-    }, [id])
-
-
-    if(loading) return <p>Loading cards...</p>
-
-
-    return (
-        <div>
-            <h2>Deck cards</h2>
-            <ol>
-            {cards.map(c => (
-            <li key={c.id}>
-            <strong>Q:</strong> {c.question_text}
-            <br/>
-            <strong>A:</strong> {c.answer_text}
-            </li>
-            ))}
-            </ol>
-        </div>
-    )
-}
+export default DeckView;

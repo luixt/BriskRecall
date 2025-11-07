@@ -1,86 +1,109 @@
-import React, { useState } from 'react'
-import { supabase } from '../supabaseClient'
+// src/components/UploadForm.jsx
+import React, { useState } from 'react';
+import { supabase } from '../supabaseClient';
 
+export default function UploadForm() {
+  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(false);
 
-// This component uploads the user's PDF to your backend endpoint '/api/upload'
-// The backend should verify the supabase session (bearer token) and then process the file
-export default function UploadForm(){
-    const [file, setFile] = useState(null)
-    const [title, setTitle] = useState('')
-    const [loading, setLoading] = useState(false)
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!file) return alert('Please select a PDF file first.');
+    if (!title.trim()) return alert('Please enter a deck title.');
 
+    setLoading(true);
+    try {
+      // 1️⃣ Get current user session for auth
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        alert('You must be logged in.');
+        return;
+      }
 
-    async function handleSubmit(e){
-        e.preventDefault()
-        if(!file) return alert('Select a PDF file')
-        setLoading(true)
+      // 2️⃣ Create FormData to send to backend
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('title', title);
 
+      // 3️⃣ Send PDF to your backend endpoint
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: formData,
+      });
 
-        // Get current session (to forward token to backend)
-        const { data: { session } } = await supabase.auth.getSession()
-        if(!session) return alert('Not authenticated')
+      if (!res.ok) throw new Error(await res.text());
+      const payload = await res.json();
 
+      const { deckTitle, cards } = payload;
+      const userId = session.user.id;
 
-        const form = new FormData()
-        form.append('file', file)
-        form.append('title', title)
+      // 4️⃣ Create deck in Supabase
+      const { data: deck, error: deckErr } = await supabase
+        .from('decks')
+        .insert([{ user_id: userId, title: deckTitle || title }])
+        .select()
+        .single();
 
+      if (deckErr) throw deckErr;
 
-        try{
-            // Upload to backend which will call Pinecone + Gemini and return generated Q/A
-            const res = await fetch('/api/upload', {
-                method: 'POST',
-                headers: {
-                Authorization: `Bearer ${session.access_token}`
-                },
-                body: form
-            })
+      // 5️⃣ Insert flashcards
+      const deckId = deck.id;
+      const flashcards = cards.map(c => ({
+        deck_id: deckId,
+        question_text: c.question,
+        answer_text: c.answer,
+      }));
 
+      const { error: cardsErr } = await supabase
+        .from('flashcards')
+        .insert(flashcards);
 
-            if(!res.ok) throw new Error(await res.text())
-            const payload = await res.json()
+      if (cardsErr) throw cardsErr;
 
-
-            // payload should include: { deckTitle, cards: [{question, answer}, ...] }
-            const { deckTitle, cards } = payload
-
-
-            // 1) Insert deck into Supabase
-            const userId = session.user.id
-            const { data: deckData, error: deckErr } = await supabase.from('decks').insert([{ user_id: userId, title: deckTitle || title }]).select().single()
-            if(deckErr) throw deckErr
-
-
-            const deckId = deckData.id
-
-
-            // 2) Insert flashcards in batch
-            const toInsert = cards.map((c, idx) => ({ deck_id: deckId, question_text: c.question, answer_text: c.answer }))
-            const { error: cardsErr } = await supabase.from('flashcards').insert(toInsert)
-            if(cardsErr) throw cardsErr
-
-
-            alert('Deck and cards saved successfully')
-            setFile(null)
-            setTitle('')
-        }catch(err){
-        console.error(err)
-            alert(err.message)
-        }finally{ setLoading(false) }
+      alert('Deck and flashcards successfully generated!');
+      setFile(null);
+      setTitle('');
+    } catch (err) {
+      console.error(err);
+      alert('Upload failed: ' + err.message);
+    } finally {
+      setLoading(false);
     }
+  }
 
+  return (
+    <form onSubmit={handleSubmit} className="p-4 border rounded shadow-md space-y-2">
+      <label className="block">
+        Deck title:
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Spanish - Chapter 1"
+          className="w-full border px-2 py-1 rounded"
+        />
+      </label>
 
-    return (
-        <form onSubmit={handleSubmit} className="card">
-        <label>Deck title</label>
-        <input value={title} onChange={e=>setTitle(e.target.value)} placeholder="Spanish - Chapter 1" />
+      <label className="block">
+        PDF file:
+        <input
+          type="file"
+          accept="application/pdf"
+          onChange={(e) => setFile(e.target.files?.[0] || null)}
+        />
+      </label>
 
-
-        <label>PDF file</label>
-        <input type="file" accept="application/pdf" onChange={e=>setFile(e.target.files?.[0] || null)} />
-
-
-        <button type="submit" disabled={loading}>{loading ? 'Processing...' : 'Upload & Generate 15 Q/A'}</button>
-        </form>
-    )
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        {loading ? 'Processing...' : 'Upload & Generate 15 Q/A'}
+      </button>
+    </form>
+  );
 }
