@@ -1,12 +1,12 @@
-// server.js
-import express from 'express';
-import multer from 'multer';
-import cors from 'cors';
-import { createClient } from '@supabase/supabase-js';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import fs from 'fs';
-import pdfParse from 'pdf-parse';
-import dotenv from 'dotenv';
+// server/server.js (CommonJS version)
+const express = require('express');
+const multer = require('multer');
+const cors = require('cors');
+const { createClient } = require('@supabase/supabase-js');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const fs = require('fs');
+const pdfParse = require('pdf-parse');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
