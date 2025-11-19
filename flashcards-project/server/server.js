@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 // 🧩 Environment variables
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
+const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_API_KEY);
 
 // ✅ Middleware to verify Supabase token
 async function verifyUser(req, res, next) {
@@ -79,5 +79,8 @@ app.post('/api/upload', verifyUser, upload.single('file'), async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+const PORT = process.env.VITE_PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+app.get("/", (req, res) => {
+  res.send("Backend API is running ✅");
+});
