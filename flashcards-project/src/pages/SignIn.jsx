@@ -8,6 +8,7 @@ export default function SignIn(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [helpOpen, setHelpOpen] = useState(false)
     const nav = useNavigate()
 
 
@@ -55,6 +56,21 @@ export default function SignIn(){
                     Don't have an account?  <Link to="/signup">Sign up</Link>
                 </p>
             </div>
+
+            {helpOpen && (
+                <div className="help-card">
+                    <h3>Need Help?</h3>
+                    <p>If you're having trouble signing in, you can reset your password or learn more about how our platform works.</p>
+                </div>
+            )}
+
+            {/* Bubble (toggles helpOpen) */}
+            <button 
+                className="help-bubble"
+                onClick={() => setHelpOpen(x => !x)}   // <--- toggle
+            >
+                ?
+            </button>
         </div>
     )
 }
