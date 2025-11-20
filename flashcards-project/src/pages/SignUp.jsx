@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { Link, useNavigate } from 'react-router-dom'
+import './SignUp.css'
 
 
 export default function SignUp(){
@@ -33,15 +34,43 @@ export default function SignUp(){
 
 
     return (
-        <div className="card">
-        <h2>Create account</h2>
-        <form onSubmit={handleSubmit}>
-        <input value={username} onChange={e=>setUsername(e.target.value)} placeholder="username" required />
-        <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="email" type="email" required />
-        <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" type="password" required />
-        <button disabled={loading}>{loading ? 'Creating...' : 'Sign up'}</button>
-        </form>
-        <p>Already have an account? <Link to="/signin">Sign in</Link></p>
+        <div className="signup-wrapper">
+            <div className="signup-card">
+                <h2>Create account</h2>
+
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        value={username} 
+                        onChange={e => setUsername(e.target.value)} 
+                        placeholder="Username"
+                        required
+                    />
+
+                    <input 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        placeholder="Email"
+                        type="email"
+                        required
+                    />
+
+                    <input 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        placeholder="Password"
+                        type="password"
+                        required
+                    />
+
+                    <button disabled={loading}>
+                        {loading ? 'Creating...' : 'Sign up'}
+                    </button>
+                </form>
+
+                <p>
+                    Already have an account? <Link to="/signin">Sign in</Link>
+                </p>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { Link, useNavigate } from 'react-router-dom'
+import './SignIn.css'
 
 
 export default function SignIn(){
@@ -24,14 +25,36 @@ export default function SignIn(){
 
 
     return (
-        <div className="card">
-        <h2>Sign in</h2>
-        <form onSubmit={handleSubmit}>
-        <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="email" type="email" required />
-        <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="password" type="password" required />
-        <button disabled={loading}>{loading ? 'Signing...' : 'Sign in'}</button>
-        </form>
-        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+        <div className="signin-wrapper">
+            <div className="signin-card">
+                <h2>Sign In</h2>
+
+                <form onSubmit={handleSubmit}>
+                    <input
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        placeholder="Email"
+                        type="email"
+                        required
+                    />
+
+                    <input
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholder="Password"
+                        type="password"
+                        required
+                    />
+
+                    <button disabled={loading}>
+                        {loading ? 'Signing in…' : 'Sign In'}
+                    </button>
+                </form>
+
+                <p>
+                    Don't have an account?  <Link to="/signup">Sign up</Link>
+                </p>
+            </div>
         </div>
     )
 }
