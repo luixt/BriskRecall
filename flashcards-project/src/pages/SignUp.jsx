@@ -15,11 +15,11 @@ export default function SignUp() {
     // --- Password validation ---
     function validatePassword(pw) {
         const rules = [
-            { test: /.{8,}/, message: 'At least 8 characters' },
-            { test: /[A-Z]/, message: 'At least 1 uppercase letter' },
-            { test: /[a-z]/, message: 'At least 1 lowercase letter' },
-            { test: /[0-9]/, message: 'At least 1 number' },
-            { test: /[!@#$%^&*]/, message: 'At least 1 special character (!@#$%^&*)' }
+            { test: /.{8,}/, message: 'Password must have at least 8 Characters' },
+            { test: /[A-Z]/, message: 'Password must have at least 1 Uppercase Letter' },
+            { test: /[a-z]/, message: 'Password must have at least 1 Lowercase Letter' },
+            { test: /[0-9]/, message: 'Password must have at least 1 Number' },
+            { test: /[!@#$%^&*]/, message: 'Password must have at least 1 Special Character (!@#$%^&*)' }
         ]
         for (const rule of rules) {
             if (!rule.test.test(pw)) return rule.message
@@ -46,6 +46,8 @@ export default function SignUp() {
 
         setLoading(true)
         try {
+            console.log("URL:", supabase.supabaseUrl)
+            console.log("Key exists:", !!supabase.supabaseKey)
             const { data, error } = await supabase.auth.signUp({ email, password })
             if (error) throw error
 
@@ -55,7 +57,7 @@ export default function SignUp() {
             if (profileError) throw profileError
 
             alert('Signup successful — check your email for confirmation if enabled')
-            nav('/signin')
+            nav('/decks')
         } catch (err) {
             setError(err.message)
         } finally {

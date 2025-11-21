@@ -18,7 +18,7 @@ export default function Home() {
           and instantly create a deck of 15 high-quality flashcards — ready to study smarter.
         </p>
 
-        <Link to="/signin" className="hero-btn">
+        <Link to="/decks" className="hero-btn">
           Start Creating Decks →
         </Link>
       </div>
