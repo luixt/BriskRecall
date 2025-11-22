@@ -1,5 +1,6 @@
 import React from "react";
 import UploadForm from "../components/UploadForm";
+import "./Upload.css";
 
 const UploadPage = () => {
   return (

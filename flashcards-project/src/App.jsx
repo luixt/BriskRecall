@@ -8,6 +8,7 @@ import DeckView from './pages/DeckView'
 import Nav from './components/Nav'
 import Home from './pages/Home'
 import { supabase } from './supabaseClient'
+import './App.css'
 
 
 export default function App(){

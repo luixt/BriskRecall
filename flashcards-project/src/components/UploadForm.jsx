@@ -1,6 +1,6 @@
-// src/components/UploadForm.jsx
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
+import './UploadForm.css';
 
 export default function UploadForm() {
   const [file, setFile] = useState(null);
@@ -27,7 +27,7 @@ export default function UploadForm() {
       formData.append('title', title);
 
       // 3️⃣ Send PDF to your backend endpoint
-      const res = await fetch('/api/upload', {
+      const res = await fetch('http://localhost:5000/api/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${session.access_token}`,
@@ -76,19 +76,18 @@ export default function UploadForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded shadow-md space-y-2">
-      <label className="block">
+    <form onSubmit={handleSubmit} className="upload-form">
+      <label>
         Deck title:
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Spanish - Chapter 1"
-          className="w-full border px-2 py-1 rounded"
         />
       </label>
 
-      <label className="block">
+      <label>
         PDF file:
         <input
           type="file"
@@ -100,7 +99,6 @@ export default function UploadForm() {
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         {loading ? 'Processing...' : 'Upload & Generate 15 Q/A'}
       </button>
