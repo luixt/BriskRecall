@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
 import { Link } from 'react-router-dom'
-
+import './Decks.css'
 
 export default function Decks(){
     const [decks, setDecks] = useState([])
@@ -21,15 +21,17 @@ export default function Decks(){
     }, [])
 
 
-    if(loading) return <p>Loading...</p>
+    if(loading) return <p className='loading-text'>Loading...</p>
     return (
-        <div>
-            <h2>Your decks</h2>
-            <ul>
-            {decks.map(d => (
-            <li key={d.id}><Link to={`/deck/${d.id}`}>{d.title || 'Untitled deck'}</Link></li>
-            ))}
-            </ul>
+        <div className="decks-wrapper">
+            <div className="decks-card">
+                <h2>Your decks</h2>
+                <ul>
+                {decks.map(d => (
+                <li key={d.id}><Link to={`/deck/${d.id}`}>{d.title || 'Untitled deck'}</Link></li>
+                ))}
+                </ul>
+            </div>
         </div>
     )
 }

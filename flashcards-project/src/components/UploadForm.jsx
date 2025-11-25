@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
+import { useNavigate } from 'react-router-dom';
 import './UploadForm.css';
 
 export default function UploadForm() {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
+  const nav = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -67,6 +69,7 @@ export default function UploadForm() {
       alert('Deck and flashcards successfully generated!');
       setFile(null);
       setTitle('');
+      nav('/decks');
     } catch (err) {
       console.error(err);
       alert('Upload failed: ' + err.message);
