@@ -25,10 +25,10 @@ export default function Decks(){
     return (
         <div className="decks-wrapper">
             <div className="decks-card">
-                <h2>Your decks</h2>
+                <h2>Your Decks</h2>
                 <ul>
                 {decks.map(d => (
-                <li key={d.id}><Link to={`/deck/${d.id}`}>{d.title || 'Untitled deck'}</Link></li>
+                <li key={d.id}><Link to={`/deck/${d.id}`} state={{ name: d.title }}>{d.title || 'Untitled deck'}</Link></li>
                 ))}
                 </ul>
             </div>
