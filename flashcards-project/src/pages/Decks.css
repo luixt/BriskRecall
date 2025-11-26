@@ -32,22 +32,40 @@
   margin: 0;
 }
 
-.decks-card li {
+.deck-item {
   margin-bottom: 0.8rem;
-}
-
-.decks-card li a {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.75rem 1rem;
   background: var(--accent-color-1);
-  color: #fff;
+  color: var(--accent-color-1);
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
   transition: background-color 0.2s ease;
 }
 
-.decks-card li a:hover {
+.deck-item a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.delete-btn {
+  color: var(--text-color);
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background-color: darkred;
+
+}
+
+.delete-btn:hover {
+  background-color: red;
+  border-color: var(--text-color);
+}
+
+.deck-item:hover {
   background: var(--accent-color-2);
 }
 
