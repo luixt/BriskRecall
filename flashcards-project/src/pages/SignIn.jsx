@@ -24,6 +24,20 @@ export default function SignIn(){
         }finally{ setLoading(false) }
     }
 
+    // Further functionality for password reset
+    // const handlePasswordReset = async () => {
+    //     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    //     redirectTo: `${window.location.origin}/reset-password`
+    //     });
+
+    //     if (error) {
+    //     console.error(error);
+    //     setMessage('Error sending reset email.');
+    //     } else {
+    //     setMessage('Password reset email sent! Check your inbox.');
+    //     }
+    // };
+
 
     return (
         <div className="signin-wrapper">
@@ -61,6 +75,12 @@ export default function SignIn(){
                 <div className="help-card">
                     <h3>Need Help?</h3>
                     <p>If you're having trouble signing in, you can reset your password or learn more about how our platform works.</p>
+                    <p 
+                    className="forgot"
+                    // onClick={handlePasswordReset}
+                    >
+                    Click Here.
+                    </p>
                 </div>
             )}
 

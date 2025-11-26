@@ -169,3 +169,19 @@
         transform: translateY(0) scale(1);
     }
 }
+
+.forgot {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--accent-color-1);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.forgot:hover {
+    color: var(--accent-color-2);
+}
+
+.forgot:active {
+    color: var(--text-color);
+}
