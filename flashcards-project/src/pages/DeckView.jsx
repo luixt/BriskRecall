@@ -119,6 +119,7 @@ const DeckView = () => {
       answer={card.answer_text}
       />
       <br></br>
+      <p>{currentCardIndex + 1} of {shuffledCards.length}</p>
       <div className="buttons">
         <button onClick={handlePreviousCard} type="prev">⭠</button>
         <button onClick={handleNextCard} type="next">⭢</button>
