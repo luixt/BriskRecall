@@ -21,15 +21,15 @@ Empower learners to efficiently retain knowledge by combining AI-powered content
 - **Additional Features:** Card flipping animation, shuffle/review functionality, streak tracking  
 
 ## 📂 Folder Structure
-flashcards-project/
-├── server/ # Node.js backend
-│ ├── server.js
-│ ├── package.json
-│ └── .env # backend env variables
-├── src/ # React frontend
-│ ├── components/
-│ ├── pages/
-│ └── App.jsx
+flashcards-project/<br>
+├── server/ # Node.js backend<br>
+│ ├── server.js<br>
+│ ├── package.json<br>
+│ └── .env # backend env variables<br>
+├── src/ # React frontend<br>
+│ ├── components/<br>
+│ ├── pages/<br>
+│ └── App.jsx<br>
 └── README.md
 
 
@@ -43,18 +43,18 @@ flashcards-project/
 ## 📝 Setup & Test (Summary)
 1. **Install Node.js & npm** (v18+) if not already installed  
 2. **Clone the repo:**  
-'''
+```bash
    git clone <repo-url>
    cd flashcards-project
-'''
+```
 3. **Install dependencies for frontend & backend:**
 
-'''
+```bash
 cd server
 npm install
 cd ../
 npm install
-'''
+```
 4. **Create .env files:**
 
 - server/.env – backend keys (Supabase URL, Supabase Key, Gemini API Key)
@@ -64,16 +64,16 @@ npm install
 
 **Run the backend:**
 
-'''
+```bash
 cd server
 node server.js
-'''
+```
 **Run the frontend:**
 
-'''bash
+```bash
 npm run dev
 Open http://localhost:5173 (or the port your frontend runs on) in your browser
-'''
+```
 
 **Sign up, upload PDFs, and test flashcard generation**
 
