@@ -1,5 +1,3 @@
-write all these in markdown:
-
 # BriskRecall: Interactive Flashcard Learning Platform
 
 ## 🚀 Purpose & Mission
