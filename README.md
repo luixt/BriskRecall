@@ -30,6 +30,7 @@ flashcards-project/<br>
 │ ├── components/<br>
 │ ├── pages/<br>
 │ └── App.jsx<br>
+├── .env # frontend env variables<br>
 └── README.md
 
 
