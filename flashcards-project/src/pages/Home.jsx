@@ -14,7 +14,7 @@ export default function Home() {
         </h1>
 
         <p className="hero-subtitle">
-          Upload a PDF. Let AI extract the key concepts, generate questions and answers, 
+          Upload a PDF. Let BriskRecall extract the key concepts, generate questions and answers, 
           and instantly create a deck of 15 high-quality flashcards — ready to study smarter.
         </p>
 
@@ -22,6 +22,10 @@ export default function Home() {
           Start Creating Decks →
         </Link>
       </div>
+
+      <h1 className="hero-title">
+          BriskRecall Features
+      </h1>
 
       {/* Features Section */}
       <div className="features">
