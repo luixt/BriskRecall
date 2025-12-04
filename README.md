@@ -70,7 +70,7 @@ node server.js
 '''
 **Run the frontend:**
 
-'''
+'''bash
 npm run dev
 Open http://localhost:5173 (or the port your frontend runs on) in your browser
 '''
@@ -89,4 +89,5 @@ Open http://localhost:5173 (or the port your frontend runs on) in your browser
 
 ## 📖 Additional Documentation
 For a more detailed, step-by-step guide to setup, API keys, database tables, and testing, see:
+
 [Detailed Setup & Testing Guide](https://docs.google.com/document/d/1o1JiP7Tbny8VjnjDpjBAiZvr6dodiW2C_cr90hfUXH8/edit?usp=sharing)
