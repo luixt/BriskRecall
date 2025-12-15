@@ -13,8 +13,10 @@ Empower learners to efficiently retain knowledge by combining AI-powered content
 - **Andres Hernandez** – Scrum Master, Frontend/Backend Developer
 
 ## ⚙️ Architecture
-- **Frontend:** React, HTML, CSS, Vite  
-- **Backend:** Node.js, Express.js, Multer (file upload), Supabase (Auth + Database)  
+- **Frontend:** React, HTML, CSS, Vite
+   - Located in the `src/` folder, organized into reusable **pages** and **components** 
+- **Backend:** Node.js, Express.js, Multer (file upload), Supabase (Auth + Database)
+   - Located in the `server/` folder 
 - **AI Integration:** Google Gemini AI for automatic flashcard generation  
 - **Database:** Supabase PostgreSQL with tables: `users`, `decks`, `flashcards` (supports cascading deletes)  
 - **State Management:** React `useState` + `useEffect` hooks  
