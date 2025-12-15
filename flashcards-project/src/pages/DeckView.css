@@ -1,0 +1,155 @@
+.set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 80px;
+  background-color: var(--bg-gradient-start);
+  color: var(--text-color);
+}
+
+.title {
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-gradient-end);
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.title h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: var(--text-color);
+}
+.title h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.title h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+.title h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+.set button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: .6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: var(--accent-color-1);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  margin: 5px;
+}
+
+.set button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+.set button:active {
+  transform: scale(0.97);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#shuffle-button {
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 3px black;
+}
+#shuffle-button:hover {
+  box-shadow: 0 0 10px black;
+  background: linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red);
+}
+
+.input-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-gradient-end);
+  border-radius: 15px;
+}
+
+.textbox {
+  width: 260px;
+  padding: 10px;
+  border: 2px solid var(--bg-gradient-end);
+  border-radius: 6px;
+  background-color: var(--bg-gradient-end);
+  color: var(--text-color);
+}
+
+.submit-button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--green, green);
+  color: white;
+}
+.submit-button:hover {
+  background-color: var(--green-dark, darkgreen);
+}
+
+.feedback {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.streaks {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+  color: orange;
+}
+
+.deck-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  border-radius: 50px;
+  background-color: var(--accent-color-1, #555);
+}
+
+.back-btn:hover {
+  background-color: #c9302c;
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}

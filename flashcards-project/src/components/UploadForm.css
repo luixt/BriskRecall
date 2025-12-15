@@ -1,0 +1,64 @@
+.upload-form {
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: 14px;
+  padding: 2rem;
+  width: 420px;  
+  max-width: 90%;            
+  margin: 0 auto;           
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  color: var(--text-color);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.upload-form > * + * {
+  margin-top: 1rem;
+}
+
+.upload-form label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Text + file inputs */
+.upload-form input[type="text"],
+.upload-form input[type="file"] {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+.upload-form input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-color-1);
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.25);
+}
+
+/* Button */
+.upload-form button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent-color-1);
+  color: white;
+  font-weight: 600;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.upload-form button:hover {
+  background: var(--accent-color-2);
+}
+
+.upload-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
